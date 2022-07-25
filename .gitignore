@@ -1,0 +1,4 @@
+nodes_modules
+.env
+views.old
+style.old

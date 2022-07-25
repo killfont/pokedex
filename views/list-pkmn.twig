@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/list.css">
+
+		<title>Users</title>
+	</head>
+	<body>
+		<div id="stars"></div>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light  mb-5">
+				<div class="container-fluid">
+					<a class="navbar-brand text-light  ps-4 pe-5" href="/pokemons"><img id="home" src="/img/pkmn.webp" alt=""></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item border-end ps-5 pe-5">
+								<a class="nav-link active text-light " aria-current="page" href="/pokemon">Ajouter des pokemons</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light border-end ps-5 pe-5" href="/pokemons">Liste pokemons</a>
+							</li>
+							<li class="nav-item border-end ps-5 pe-5">
+								<a class="nav-link text-light " href="/logout">deconnexion</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</header>
+		<main class="">
+
+			<h1 class="text-center mb-5">Liste pokemons de :<p id="session">{{userConnected}}</p>
+			</h1>
+
+
+			<section id="cardContainer" class="">
+				{% for user in users %}
+
+					<div class="modal" data-pokeid={{user._id}}>
+						<div id="modal-container">
+							<p>Êtes-vous sûr de vouloir supprimer ce pokemon ?</p>
+							<div id="button-container">
+								<a id="linkDelete">
+									<button id="oui">Oui</button>
+								</a>
+								<a href="">
+									<button id="non">Non</button>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<article>
+						{% if pokemon.img == "pikachu.png" %}
+							<img src="./img/rattata.png" alt="image pokemon" id="imgpkmn">
+						{% else %}
+							<img src="./uploads/images/{{user.img}}" alt="image pokemon" id="imgpkmn">
+						{% endif %}
+						<details>
+							<summary>Details</summary>
+							<p>
+								NAME :
+								{{user.name}}</p>
+							<p>
+								TYPE :
+								{{user.type}}</p>
+							<p>
+								LEVEL :
+								{{ user.level}}
+
+							</p>
+							<progress max="100" min="0" value="{{ user.level}}">
+						</progress>
+				
+
+				</details>
+
+
+				<button id="red" onclick="modalDelete({{loop.index}})">Suprimer</button>
+
+				<a href="/updatePokemon/{{user._id}}">
+					<button id="green">Modifier</button>
+				</a>
+			</article>
+		{% endfor %}
+	</body>
+</html></section></main><script src="./js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script></body></html>
